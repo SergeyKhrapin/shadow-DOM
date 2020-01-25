@@ -37,7 +37,7 @@
 
     <script>
         const container = document.querySelector('.container');
-        const shadowRoot = container.attachShadow({mode: 'open'});
+        const shadowRootElement = container.attachShadow({mode: 'open'});
 
         const shadowElement = document.createElement('span');
         shadowElement.className = 'shadow-element';
@@ -55,7 +55,10 @@
             }
         `;
         
-        shadowRoot.append(styleInsideShadow, shadowElement);
+        shadowRootElement.append(styleInsideShadow, shadowElement);
+
+        console.log('Shadow root of container - ', container.shadowRoot); // #shadow-root
+        console.log('Host of shadow root - ', shadowRootElement.host); // div.container
     </script>
 </body>
 </html>
