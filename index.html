@@ -59,6 +59,9 @@
 
         console.log('Shadow root of container - ', container.shadowRoot); // #shadow-root
         console.log('Host of shadow root - ', shadowRootElement.host); // div.container
+
+        console.log(document.querySelector('span')); // null - there is no such element in Light DOM
+        console.log(container.shadowRoot.querySelector('span')); // returns span element in Shadow DOM
     </script>
 </body>
 </html>
