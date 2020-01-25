@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shadow DOM</title>
+</head>
+<body>
+    <style>
+        .shadow-element {
+            color: red !important; /* this style is not applied because we cann't affect shadow elements from outside elements */
+        }
+    </style>
+
+    <h2 class="heading-outer">Shadow element will be attached into div container below.</h2>
+
+    <div class="container">
+        <h3>This heading inside the container is not visible when shadow element is attached - I do not know why</h3>
+    </div>
+
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">More about shadow-DOM</a></p>
+
+
+
+    <script>
+        const container = document.querySelector('.container');
+        const shadowRoot = container.attachShadow({mode: 'open'});
+
+        const shadowElement = document.createElement('span');
+        shadowElement.className = 'shadow-element';
+        shadowElement.innerText = 'Shadow element';
+
+        const styleInsideShadow = document.createElement('style');
+        styleInsideShadow.innerText = `
+            .shadow-element {
+                font-size: 30px;
+                color: gray;
+                text-shadow: 2px 2px 4px;
+            }
+            .heading-outer {
+                color: red; // this style is not applied because we cann't affect other outside elements from the shadow element
+            }
+        `;
+        
+        shadowRoot.append(styleInsideShadow, shadowElement);
+    </script>
+</body>
+</html>
