@@ -11,13 +11,25 @@
         .shadow-element {
             color: red !important; /* this style is not applied because we cann't affect shadow elements from outside elements */
         }
+        input::-webkit-slider-runnable-track {
+            background: red; /* to check this in browser - turn 'Show user agent shadow DOM' on in Chrome DevTools */
+        }
     </style>
 
-    <h2 class="heading-outer">Shadow element will be attached into div container below.</h2>
-
-    <div class="container">
-        <h3>This heading inside the container is not visible when shadow element is attached - I do not know why</h3>
+    <div>
+        <h2>Example 1</h2>
+        <h3 class="heading-outer">Shadow element will be attached into div container below.</h3>
+        <div class="container">
+            <p>This paragraph inside the container is not visible because when an element has both tree (light and shadow) only shadow tree is displayed</p>
+        </div>
     </div>
+
+    <div>
+        <h2>Example 2</h2>
+        <input type="range">
+        <!-- In fact we can style such elements! -->
+    </div>
+    
 
     <p><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">More about shadow-DOM</a></p>
     <p><a href="https://learn.javascript.ru/shadow-dom">More about shadow-DOM</a></p>
